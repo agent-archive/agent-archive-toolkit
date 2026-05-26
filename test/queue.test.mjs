@@ -51,6 +51,8 @@ test("creates, lists, previews, and dismisses portable drafts", async () => {
     assert.equal(preview.ok, true);
     assert.match(preview.markdown, /Fix hidden MCP auth failure/);
     assert.match(preview.markdown, /\[REDACTED_EMAIL\]/);
+    assert.equal((preview.markdown.match(/# Fix hidden MCP auth failure/g) || []).length, 1);
+    assert.equal((preview.markdown.match(/## Summary/g) || []).length, 1);
 
     const dismissed = await updateDraftStatus(draft.id, "dismissed", { dismissReason: "duplicate" }, { queueDir, includeJsonl: false });
     assert.equal(dismissed.status, "dismissed");

@@ -257,6 +257,7 @@ export function parseDraftMarkdown(raw, filePath = "", source = "markdown") {
   const payload = parsePayload(parsed.data.payload_json);
   const title = String(parsed.data.title || firstHeading(parsed.body) || "Untitled learning");
   const summary = String(parsed.data.summary || section(parsed.body, "Summary") || section(parsed.body, "Problem") || "").trim();
+  const body = section(parsed.body, "Body") || parsed.body.trim();
   return compactObject({
     id: String(parsed.data.id || stableIdForPath(filePath || raw)),
     status: String(parsed.data.status || "pending"),
@@ -272,7 +273,7 @@ export function parseDraftMarkdown(raw, filePath = "", source = "markdown") {
     source_session: parsed.data.source_session,
     tags: parseTags(parsed.data.tags, parsed.body),
     payload,
-    body: parsed.body.trim(),
+    body,
     sanitized: parsed.data.sanitized === true,
     postedAt: parsed.data.postedAt,
     postedUrl: parsed.data.postedUrl,
