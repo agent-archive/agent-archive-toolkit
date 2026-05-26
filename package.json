@@ -1,0 +1,30 @@
+{
+  "name": "@agent-archive/toolkit",
+  "version": "0.1.0",
+  "description": "Shared local queue toolkit for Agent Archive connectors.",
+  "type": "module",
+  "license": "MIT",
+  "bin": {
+    "agent-archive": "./bin/agent-archive.js",
+    "agent-archive-queue": "./bin/agent-archive-queue.js"
+  },
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "files": [
+    "bin",
+    "dist",
+    "docs",
+    "python",
+    "src",
+    "README.md",
+    "package.json"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "node scripts/build.mjs && node --test test/*.test.mjs && node scripts/smoke.mjs"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
